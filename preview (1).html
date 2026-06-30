@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Homework Tracker Prototype</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6fb;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 400px;
+      margin: 40px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #ccc;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #2f4f8f;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 15px;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+    }
+
+    button {
+      background: #4b70c9;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin: 5px 0;
+      width: 100%;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #3557a3;
+    }
+
+    .link {
+      text-align: center;
+      color: #4b70c9;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .assignment {
+      background: #eef1fa;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login Page -->
+  <div class="container" id="loginPage">
+    <h1>Homework Tracker</h1>
+    <h2>Welcome Back</h2>
+
+    <label>Email/Username</label>
+    <input type="text" placeholder="Enter email">
+
+    <label>Password</label>
+    <input type="password" placeholder="Enter password">
+
+    <button onclick="showPage('dashboardPage')">Sign In</button>
+    <button>Sign in with Google</button>
+
+    <p class="link">Forgot password?</p>
+    <p class="link">Don't have an account? Sign up</p>
+  </div>
+
+  <!-- Dashboard Page -->
+  <div class="container hidden" id="dashboardPage">
+    <h1>Homework Tracker</h1>
+    <h2>Dashboard</h2>
+
+    <button onclick="showPage('addAssignmentPage')">+ Add Assignment</button>
+    <button onclick="showPage('reminderPage')">Reminder Settings</button>
+
+    <h3>Upcoming Assignments</h3>
+
+    <div class="assignment">
+      <strong>Math Homework</strong><br>
+      Due: June 15, 2026<br>
+      Status: Not Complete
+    </div>
+
+    <div class="assignment">
+      <strong>English Essay</strong><br>
+      Due: June 17, 2026<br>
+      Status: Not Complete
+    </div>
+
+    <div class="assignment">
+      <strong>Science Homework</strong><br>
+      Due: June 18, 2026<br>
+      Status: Not Complete
+    </div>
+
+    <p>View: Day | Week | Month</p>
+  </div>
+
+  <!-- Add Assignment Page -->
+  <div class="container hidden" id="addAssignmentPage">
+    <h1>Add Assignment</h1>
+
+    <label>Assignment Title</label>
+    <input type="text" placeholder="Example: Math Homework">
+
+    <label>Course</label>
+    <input type="text" placeholder="Example: MATH 1010">
+
+    <label>Due Date</label>
+    <input type="date">
+
+    <label>Notes</label>
+    <textarea placeholder="Add notes here"></textarea>
+
+    <label>Reminder</label>
+    <select>
+      <option>Reminder On</option>
+      <option>Reminder Off</option>
+    </select>
+
+    <button onclick="showPage('dashboardPage')">Save Assignment</button>
+    <button onclick="showPage('dashboardPage')">Cancel</button>
+  </div>
+
+  <!-- Reminder Settings Page -->
+  <div class="container hidden" id="reminderPage">
+    <h1>Reminder Settings</h1>
+
+    <label>Reminder Time</label>
+    <select>
+      <option>1 Hour Before</option>
+      <option>24 Hours Before</option>
+      <option>3 Days Before</option>
+    </select>
+
+    <label>Notification Type</label>
+    <select>
+      <option>Push Notification</option>
+      <option>Email Reminder</option>
+    </select>
+
+    <button onclick="showPage('dashboardPage')">Save Reminder</button>
+    <button onclick="showPage('dashboardPage')">Back</button>
+  </div>
+
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll(".container").forEach(page => {
+        page.classList.add("hidden");
+      });
+      document.getElementById(pageId).classList.remove("hidden");
+    }
+  </script>
+
+</body>
+</html>
