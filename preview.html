@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment Due Date Tracker</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 40px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        input, button, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        .overdue {
+            background-color: #ffb3b3;
+            color: darkred;
+            font-weight: bold;
+        }
+
+        .completed {
+            background-color: #c8f7c5;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Assignment Due Date Tracker</h1>
+
+    <input type="text" id="assignment" placeholder="Assignment Name">
+
+    <input type="date" id="dueDate">
+
+    <select id="status">
+        <option value="Not Started">Not Started</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+    </select>
+
+    <button onclick="addAssignment()">Add Assignment</button>
+
+    <table id="assignmentTable">
+        <tr>
+            <th>Assignment</th>
+            <th>Due Date</th>
+            <th>Status</th>
+        </tr>
+    </table>
+
+</div>
+
+<script>
+
+function addAssignment() {
+
+    let assignment = document.getElementById("assignment").value;
+    let dueDate = document.getElementById("dueDate").value;
+    let status = document.getElementById("status").value;
+
+    if (assignment === "" || dueDate === "") {
+        alert("Please enter an assignment and due date.");
+        return;
+    }
+
+    let table = document.getElementById("assignmentTable");
+    let row = table.insertRow();
+
+    let today = new Date();
+    let due = new Date(dueDate);
+
+    if (due < today && status !== "Completed") {
+        row.classList.add("overdue");
+    }
+
+    if (status === "Completed") {
+        row.classList.add("completed");
+    }
+
+    row.insertCell(0).innerHTML = assignment;
+    row.insertCell(1).innerHTML = dueDate;
+    row.insertCell(2).innerHTML = status;
+
+    // Clear inputs
+    document.getElementById("assignment").value = "";
+    document.getElementById("dueDate").value = "";
+    document.getElementById("status").selectedIndex = 0;
+}
+
+</script>
+
+</body>
+</html>
