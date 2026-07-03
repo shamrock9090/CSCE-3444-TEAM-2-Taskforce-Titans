@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework Tracker - Mark Assignments Complete</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 15px;
+            transform: scale(1.3);
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: green;
+            font-weight: bold;
+            background-color: #d4edda;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Homework Tracker</h1>
+
+    <ul id="assignmentList">
+        <li>
+            <input type="checkbox" onchange="markComplete(this)">
+            Math Assignment
+        </li>
+
+        <li>
+            <input type="checkbox" onchange="markComplete(this)">
+            English Essay
+        </li>
+
+        <li>
+            <input type="checkbox" onchange="markComplete(this)">
+            Science Project
+        </li>
+
+        <li>
+            <input type="checkbox" onchange="markComplete(this)">
+            History Homework
+        </li>
+
+        <li>
+            <input type="checkbox" onchange="markComplete(this)">
+            Computer Science Lab
+        </li>
+    </ul>
+</div>
+
+<script>
+function markComplete(checkbox) {
+    const assignment = checkbox.parentElement;
+
+    if (checkbox.checked) {
+        assignment.classList.add("completed");
+    } else {
+        assignment.classList.remove("completed");
+    }
+}
+</script>
+
+</body>
+</html>
