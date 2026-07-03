@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework Tracker - Sort by Class</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        select {
+            padding: 8px;
+            margin: 15px 0;
+            width: 200px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+        }
+
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Homework Tracker</h1>
+
+    <label for="classFilter">Sort by Class:</label>
+
+    <select id="classFilter" onchange="filterClass()">
+        <option value="All">All Classes</option>
+        <option value="Math">Math</option>
+        <option value="English">English</option>
+        <option value="Science">Science</option>
+        <option value="History">History</option>
+        <option value="Computer Science">Computer Science</option>
+    </select>
+
+    <table id="assignmentTable">
+        <thead>
+            <tr>
+                <th>Assignment</th>
+                <th>Class</th>
+                <th>Due Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr data-class="Math">
+                <td>Algebra Worksheet</td>
+                <td>Math</td>
+                <td>July 5</td>
+            </tr>
+
+            <tr data-class="English">
+                <td>Essay Draft</td>
+                <td>English</td>
+                <td>July 6</td>
+            </tr>
+
+            <tr data-class="Science">
+                <td>Lab Report</td>
+                <td>Science</td>
+                <td>July 8</td>
+            </tr>
+
+            <tr data-class="History">
+                <td>Chapter Review</td>
+                <td>History</td>
+                <td>July 9</td>
+            </tr>
+
+            <tr data-class="Computer Science">
+                <td>HTML Project</td>
+                <td>Computer Science</td>
+                <td>July 10</td>
+            </tr>
+
+            <tr data-class="Math">
+                <td>Geometry Homework</td>
+                <td>Math</td>
+                <td>July 12</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+function filterClass() {
+    const selectedClass = document.getElementById("classFilter").value;
+    const rows = document.querySelectorAll("#assignmentTable tbody tr");
+
+    rows.forEach(row => {
+        const className = row.getAttribute("data-class");
+
+        if (selectedClass === "All" || className === selectedClass) {
+            row.classList.remove("hidden");
+        } else {
+            row.classList.add("hidden");
+        }
+    });
+}
+</script>
+
+</body>
+</html>
