@@ -1,65 +1,154 @@
-# Homework Tracker Full Program
+# Homework Tracker
 
-This project contains:
+## CSCE 3444 – Software Engineering Project
 
-- HTML frontend
-- CSS styling
-- JavaScript interactions
-- C++ REST API backend
-- JSON file storage
+### Team Name
+**Taskforce Titans**
 
-## 1. Build the C++ backend
-## Windows PowerShell
+### Project Title
+**Homework Tracker**
 
-```powershell
-cd backend
-cmake -S . -B build
-cmake --build build --config Release
-.\build\Release\homework_tracker_backend.exe
+---
+
+## Team Members
+
+- **Team Lead:** Nick Hinojosa
+- **Member 1:**  Shamir Warsi   
+- **Member 2:**  Tais Loye
+- **Member 3:**  Dylan Liles
+
+---
+
+## Project Description
+
+Homework Tracker is a web application designed to help students organize and manage their academic work. Students can create an account, add assignments, edit or delete existing assignments, set due dates, write notes, enable reminders, and track completed work. The system provides a simple and organized interface to help students stay on top of their coursework.
+
+---
+
+## Technologies Used
+
+### Frontend
+- HTML5
+- CSS3
+- JavaScript
+
+### Backend
+- C++17
+- cpp-httplib (REST API)
+- nlohmann/json
+
+### Database
+- JSON File Storage (Prototype)
+- Firebase or MySQL (Planned for Future Development)
+
+---
+
+## Features
+
+- User Registration
+- User Login & Logout
+- Create Assignments
+- Edit Assignments
+- Delete Assignments
+- Assignment Notes
+- Due Date Tracking
+- Reminder Settings
+- Mark Assignments as Complete
+- Search Assignments
+- Filter by Status
+- Responsive User Interface
+
+---
+
+## Project Structure
+
+```
+HomeworkTracker/
+│
+├── backend/
+│   ├── main.cpp
+│   ├── CMakeLists.txt
+│   └── data/
+│       └── database.json
+│
+├── frontend/
+│   ├── index.html
+│   ├── styles.css
+│   └── app.js
+│
+└── README.md
 ```
 
-Depending on the CMake generator, the executable may be:
+---
 
-```powershell
-.\build\homework_tracker_backend.exe
-```
+## Installation
 
-### macOS/Linux
+### Requirements
+
+- C++17 Compiler
+- CMake 3.20+
+- Git
+
+### Build the Backend
 
 ```bash
-cd backend
 cmake -S . -B build
 cmake --build build
-./build/homework_tracker_backend
 ```
 
-The backend runs on:
+Run the backend:
 
-```text
+```bash
+./build/homework_tracker
+```
+
+The server will start on:
+
+```
 http://localhost:8080
 ```
 
-## 2. Open the frontend
+Open your browser and navigate to:
 
-Open:
-
-```text
-frontend/index.html
+```
+http://localhost:8080
 ```
 
-in Chrome or Edge.
+---
 
+## Future Improvements
 
-## Completed features
+- Firebase Authentication
+- Cloud Database Integration
+- Email Notifications
+- AI Study Schedule Generator
+- Mobile Application
+- Calendar Integration
 
-- Login and logout
-- Add assignments
-- Edit assignments
-- Delete assignments
-- Add notes
-- Due dates
-- Reminder settings
-- Mark assignments complete
-- Filter active/completed assignments
-- JSON data persistence
-- Authenticated API routes
+---
+
+## Team Contributions
+
+| Team Member | Responsibilities |
+|-------------|------------------|
+| Team Lead | Project management, backend development, integration |
+| Member 1 | Frontend UI and styling |
+| Member 2 | Backend development and API testing |
+| Member 3 | Database design and testing |
+| Member 4 | Documentation, testing, presentation |
+
+---
+
+## Course Information
+
+**Course:** CSCE 3444 – Software Engineering
+
+**Project:** Homework Tracker
+
+**Team:** Taskforce Titans
+
+---
+
+## License
+
+This project was developed for educational purposes as part of the CSCE 3444 Software Engineering course.
