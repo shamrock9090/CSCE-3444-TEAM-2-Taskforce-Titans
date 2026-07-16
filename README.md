@@ -1,4 +1,65 @@
-# CSCE-3444-TEAM-2 
-Nicholas H - Team leader, Shamir Warsi, Dylan Liles, Tais Loye
+# Homework Tracker Full Program
 
-As a team, we plan on working on a homework tracker by the end of the semester. In order to complete our project, we must develop, design, and test our project to see if our big project is good to go by the end of the term.
+This project contains:
+
+- HTML frontend
+- CSS styling
+- JavaScript interactions
+- C++ REST API backend
+- JSON file storage
+
+## 1. Build the C++ backend
+## Windows PowerShell
+
+```powershell
+cd backend
+cmake -S . -B build
+cmake --build build --config Release
+.\build\Release\homework_tracker_backend.exe
+```
+
+Depending on the CMake generator, the executable may be:
+
+```powershell
+.\build\homework_tracker_backend.exe
+```
+
+### macOS/Linux
+
+```bash
+cd backend
+cmake -S . -B build
+cmake --build build
+./build/homework_tracker_backend
+```
+
+The backend runs on:
+
+```text
+http://localhost:8080
+```
+
+## 2. Open the frontend
+
+Open:
+
+```text
+frontend/index.html
+```
+
+in Chrome or Edge.
+
+
+## Completed features
+
+- Login and logout
+- Add assignments
+- Edit assignments
+- Delete assignments
+- Add notes
+- Due dates
+- Reminder settings
+- Mark assignments complete
+- Filter active/completed assignments
+- JSON data persistence
+- Authenticated API routes
