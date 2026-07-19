@@ -1,0 +1,12 @@
+{
+  "name": "homework-tracker",
+  "version": "1.0.0",
+  "description": "Homework Tracker with HTML frontend and Node.js backend",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "dependencies": {
+    "mysql2": "^3.12.0"
+  }
+}
