@@ -1,0 +1,14 @@
+# Build directory
+build/
+
+# IDE files
+.vscode/
+.idea/
+
+# Compiled files
+*.exe
+*.o
+*.obj
+*.lib
+*.a
+*.pdb

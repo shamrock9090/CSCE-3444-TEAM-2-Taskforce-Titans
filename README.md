@@ -131,11 +131,11 @@ http://localhost:8080
 
 | Team Member | Responsibilities |
 |-------------|------------------|
-| Nick Hinojosa | Project management, backend development, integration |
-| Dylan Liles | Frontend UI and styling |
-| Shamir Warsi | Backend development and API testing |
-| Tais Loye | Database design and testing |
-
+| Team Lead | Project management, backend development, integration |
+| Member 1 | Frontend UI and styling |
+| Member 2 | Backend development and API testing |
+| Member 3 | Database design and testing |
+| Member 4 | Documentation, testing, presentation |
 
 ---
 

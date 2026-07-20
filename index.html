@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homework Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section id="loginScreen" class="screen card">
+      <h1>Homework Tracker</h1>
+      <p class="subtitle">Stay organized and never miss a deadline.</p>
+
+      <label>Email</label>
+      <input id="emailInput" type="email" placeholder="student@example.com">
+
+      <label>Password</label>
+      <input id="passwordInput" type="password" placeholder="Enter password">
+
+      <button id="loginBtn">Sign In</button>
+      <p id="loginMessage" class="message"></p>
+    </section>
+
+    <section id="dashboardScreen" class="screen hidden">
+      <header class="topbar">
+        <div>
+          <h1>Homework Tracker</h1>
+          <p id="welcomeText"></p>
+        </div>
+        <button id="logoutBtn" class="secondary">Logout</button>
+      </header>
+
+      <section class="card controls">
+        <button id="showAddFormBtn">+ Add Assignment</button>
+        <select id="filterSelect">
+          <option value="all">All Assignments</option>
+          <option value="active">Not Complete</option>
+          <option value="completed">Completed</option>
+        </select>
+      </section>
+
+      <section id="addFormCard" class="card hidden">
+        <h2>Add Assignment</h2>
+        <form id="assignmentForm">
+          <input id="assignmentId" type="hidden">
+
+          <label>Assignment Title</label>
+          <input id="titleInput" type="text" required>
+
+          <label>Course</label>
+          <input id="courseInput" type="text">
+
+          <label>Due Date</label>
+          <input id="dueDateInput" type="date" required>
+
+          <label>Notes</label>
+          <textarea id="notesInput" rows="4"></textarea>
+
+          <label class="checkbox-row">
+            <input id="reminderEnabledInput" type="checkbox">
+            Enable Reminder
+          </label>
+
+          <label>Reminder Time</label>
+          <select id="reminderTimeInput">
+            <option value="1 hour">1 Hour Before</option>
+            <option value="24 hours">24 Hours Before</option>
+            <option value="3 days">3 Days Before</option>
+          </select>
+
+          <div class="button-row">
+            <button type="submit">Save Assignment</button>
+            <button type="button" id="cancelFormBtn" class="secondary">Cancel</button>
+          </div>
+        </form>
+        <p id="formMessage" class="message"></p>
+      </section>
+
+      <section class="card">
+        <h2>Upcoming Assignments</h2>
+        <div id="assignmentList"></div>
+      </section>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
