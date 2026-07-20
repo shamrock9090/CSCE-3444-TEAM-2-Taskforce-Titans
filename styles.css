@@ -1,0 +1,134 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f2f5fb;
+  color: #1f2937;
+}
+
+.app-shell {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.screen { width: 100%; }
+
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 18px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+#loginScreen {
+  max-width: 420px;
+  margin: 50px auto;
+}
+
+h1, h2 { color: #2f4f8f; }
+
+.subtitle { color: #6b7280; }
+
+label {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+button {
+  background: #4b70c9;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover { opacity: 0.92; }
+
+.secondary {
+  background: #e5e7eb;
+  color: #1f2937;
+}
+
+.hidden { display: none; }
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.controls select { max-width: 240px; }
+
+.button-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox-row input { width: auto; }
+
+.assignment-card {
+  border: 1px solid #dbe3f2;
+  border-left: 5px solid #4b70c9;
+  border-radius: 10px;
+  padding: 14px;
+  margin: 12px 0;
+}
+
+.assignment-card.completed {
+  opacity: 0.65;
+  border-left-color: #22c55e;
+}
+
+.assignment-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.assignment-actions button {
+  padding: 8px 12px;
+}
+
+.message {
+  min-height: 20px;
+  color: #b91c1c;
+}
+
+@media (max-width: 650px) {
+  .topbar, .controls, .button-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .controls select { max-width: none; }
+}
