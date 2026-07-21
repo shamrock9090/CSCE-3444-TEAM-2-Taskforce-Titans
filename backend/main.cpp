@@ -221,17 +221,17 @@ std::optional<std::string> authenticate(const httplib::Request& req) {
     try {
         json payload = json::parse(payload_str);
 
-        // 1. Verify issuer starts with Google's securetoken URL
+        // 1. Verify issuer starts with Google's securetoken URL and matches project ID
         std::string iss = payload.value("iss", "");
-        if (iss.rfind("https://securetoken.google.com/", 0) != 0) {
+        if (iss != "https://securetoken.google.com/csce-3444-taskforce-titans") {
             std::cerr << "Invalid JWT Issuer: " << iss << "\n";
             return std::nullopt;
         }
 
-        // 2. Verify audience is not empty
+        // 2. Verify audience matches project ID
         std::string aud = payload.value("aud", "");
-        if (aud.empty()) {
-            std::cerr << "Empty JWT Audience\n";
+        if (aud != "csce-3444-taskforce-titans") {
+            std::cerr << "Invalid JWT Audience: " << aud << "\n";
             return std::nullopt;
         }
 
