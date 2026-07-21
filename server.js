@@ -3,7 +3,11 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = process.env.PORT || 3000;
-const PUBLIC_DIR = __dirname;
+
+// Smart directory detection: use 'frontend' folder if it exists, otherwise use root
+const PUBLIC_DIR = fs.existsSync(path.join(__dirname, 'frontend', 'index.html'))
+    ? path.join(__dirname, 'frontend')
+    : __dirname;
 
 const MIME_TYPES = {
     '.html': 'text/html',
@@ -48,4 +52,5 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, '0.0.0.0', () => {
     console.log(`Frontend server running at http://localhost:${PORT}/`);
+    console.log(`Serving files from: ${PUBLIC_DIR}`);
 });
