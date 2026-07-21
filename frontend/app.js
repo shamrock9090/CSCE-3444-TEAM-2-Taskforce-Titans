@@ -40,13 +40,11 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
   const message = document.getElementById("loginMessage");
 
   try {
-    const data = await apiRequest("/login", {
-      method: "POST",
-      body: JSON.stringify({ email, password })
-    });
-
-    token = data.token;
-    currentUser = data.user.email;
+    const userCredential = await window.fbAuth.signInWithEmailAndPassword(
+      window.fbAuth.auth, email, password
+    );
+    token = await userCredential.user.getIdToken();
+    currentUser = userCredential.user.email;
     localStorage.setItem("hwToken", token);
     localStorage.setItem("hwUser", currentUser);
     message.textContent = "";
@@ -56,7 +54,32 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
   }
 });
 
-document.getElementById("logoutBtn").addEventListener("click", () => {
+document.getElementById("registerBtn").addEventListener("click", async () => {
+  const email = document.getElementById("emailInput").value.trim();
+  const password = document.getElementById("passwordInput").value;
+  const message = document.getElementById("loginMessage");
+
+  try {
+    const userCredential = await window.fbAuth.createUserWithEmailAndPassword(
+      window.fbAuth.auth, email, password
+    );
+    token = await userCredential.user.getIdToken();
+    currentUser = userCredential.user.email;
+    localStorage.setItem("hwToken", token);
+    localStorage.setItem("hwUser", currentUser);
+    message.textContent = "";
+    showDashboard();
+  } catch (error) {
+    message.textContent = error.message;
+  }
+});
+
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+  try {
+    await window.fbAuth.signOut(window.fbAuth.auth);
+  } catch (error) {
+    console.error("Sign out failed", error);
+  }
   token = "";
   currentUser = "";
   localStorage.removeItem("hwToken");

@@ -2,6 +2,7 @@
 #include <nlohmann/json.hpp>
 
 #include <algorithm>
+#include <chrono>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -175,10 +176,82 @@ void addCors(httplib::Response& res) {
     res.set_header("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS");
 }
 
+std::string base64url_decode(std::string in) {
+    for (char& c : in) {
+        if (c == '-') c = '+';
+        else if (c == '_') c = '/';
+    }
+    while (in.length() % 4) {
+        in.push_back('=');
+    }
+    std::string out;
+    std::vector<int> T(256, -1);
+    for (int i = 0; i < 64; i++) {
+        T["ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[i]] = i;
+    }
+    int val = 0, valb = -8;
+    for (char c : in) {
+        if (c == '=') break;
+        if (T[static_cast<unsigned char>(c)] == -1) continue;
+        val = (val << 6) + T[static_cast<unsigned char>(c)];
+        valb += 6;
+        if (valb >= 0) {
+            out.push_back(char((val >> valb) & 0xFF));
+            valb -= 8;
+        }
+    }
+    return out;
+}
+
 std::optional<std::string> authenticate(const httplib::Request& req) {
     const std::string value = req.get_header_value("Authorization");
-    if (value == "Bearer demo-token") return std::string("student-001");
-    return std::nullopt;
+    if (value.rfind("Bearer ", 0) != 0) return std::nullopt;
+
+    std::string token = value.substr(7);
+
+    size_t firstDot = token.find('.');
+    if (firstDot == std::string::npos) return std::nullopt;
+
+    size_t secondDot = token.find('.', firstDot + 1);
+    if (secondDot == std::string::npos) return std::nullopt;
+
+    std::string payload_b64 = token.substr(firstDot + 1, secondDot - firstDot - 1);
+    std::string payload_str = base64url_decode(payload_b64);
+
+    try {
+        json payload = json::parse(payload_str);
+
+        // 1. Verify issuer starts with Google's securetoken URL
+        std::string iss = payload.value("iss", "");
+        if (iss.rfind("https://securetoken.google.com/", 0) != 0) {
+            std::cerr << "Invalid JWT Issuer: " << iss << "\n";
+            return std::nullopt;
+        }
+
+        // 2. Verify audience is not empty
+        std::string aud = payload.value("aud", "");
+        if (aud.empty()) {
+            std::cerr << "Empty JWT Audience\n";
+            return std::nullopt;
+        }
+
+        // 3. Verify expiration
+        uint64_t exp = payload.value("exp", 0ULL);
+        auto now = std::chrono::duration_cast<std::chrono::seconds>(
+            std::chrono::system_clock::now().time_since_epoch()
+        ).count();
+
+        if (exp < static_cast<uint64_t>(now)) {
+            std::cerr << "JWT Token Expired. Exp: " << exp << ", Now: " << now << "\n";
+            return std::nullopt;
+        }
+
+        // Return the unique Firebase User ID (UID)
+        return payload.value("sub", "");
+    } catch (...) {
+        std::cerr << "Error parsing JWT payload JSON\n";
+        return std::nullopt;
+    }
 }
 
 bool validDate(const std::string& date) {

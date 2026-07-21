@@ -18,7 +18,10 @@
       <label>Password</label>
       <input id="passwordInput" type="password" placeholder="Enter password">
 
-      <button id="loginBtn">Sign In</button>
+      <div class="button-row">
+        <button id="loginBtn">Sign In</button>
+        <button id="registerBtn" class="secondary">Sign Up</button>
+      </div>
       <p id="loginMessage" class="message"></p>
     </section>
 
@@ -84,6 +87,29 @@
     </section>
   </main>
 
-  <script src="app.js"></script>
+  <!-- Import Firebase App and Auth SDKs -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    // Your web app's Firebase configuration
+    // (Replace placeholders with your actual credentials from the Firebase Console)
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Expose auth to window
+    window.fbAuth = { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut };
+  </script>
+  <script src="app.js" type="module"></script>
 </body>
 </html>
