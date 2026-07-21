@@ -2,9 +2,9 @@
   "name": "homework-tracker",
   "version": "1.0.0",
   "description": "Homework Tracker App for CSCE 3444",
-  "main": "frontend/server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node frontend/server.js"
+    "start": "node server.js"
   },
   "dependencies": {}
 }
