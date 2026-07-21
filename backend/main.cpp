@@ -343,10 +343,20 @@ int main() {
         }
     );
 
-    std::cout << "Backend running on http://localhost:8080\n";
-    std::cout << "Open frontend/index.html in your browser.\n";
+    // Mount static files
+    server.set_mount_point("/", "./frontend");
 
-    if (!server.listen("0.0.0.0", 8080)) {
+    int port = 8080;
+    const char* port_env = std::getenv("PORT");
+    if (port_env) {
+        try {
+            port = std::stoi(port_env);
+        } catch (...) {}
+    }
+
+    std::cout << "Server running on http://0.0.0.0:" << port << "\n";
+
+    if (!server.listen("0.0.0.0", port)) {
         std::cerr << "Could not start server.\n";
         return 1;
     }

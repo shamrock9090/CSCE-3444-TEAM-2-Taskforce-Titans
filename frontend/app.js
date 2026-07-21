@@ -1,4 +1,4 @@
-const API = "http://127.0.0.1:8080/api";
+const API = "/api";
 let token = localStorage.getItem("hwToken") || "";
 let currentUser = localStorage.getItem("hwUser") || "";
 let assignments = [];
