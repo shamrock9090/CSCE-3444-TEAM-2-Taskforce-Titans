@@ -1,0 +1,37 @@
+{
+  "assignments": [
+    {
+      "completed": true,
+      "course": "CSCE 2110",
+      "dueDate": "2026-07-20",
+      "id": "214f2a44b1949c20",
+      "notes": "goodluck",
+      "reminderEnabled": true,
+      "reminderTime": "24 hours",
+      "title": "Quiz",
+      "userId": "student-001"
+    },
+    {
+      "completed": true,
+      "course": "phys1010",
+      "dueDate": "2026-07-21",
+      "id": "19dba62792791820",
+      "notes": "its easy",
+      "reminderEnabled": true,
+      "reminderTime": "1 hour",
+      "title": "Exam",
+      "userId": "student-001"
+    },
+    {
+      "completed": false,
+      "course": "eeng 2700",
+      "dueDate": "2026-07-22",
+      "id": "25646368cc08c8b5",
+      "notes": "remember your boolean algebra",
+      "reminderEnabled": true,
+      "reminderTime": "1 hour",
+      "title": "Exam",
+      "userId": "student-001"
+    }
+  ]
+}
